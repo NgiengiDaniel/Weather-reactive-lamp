@@ -1,3 +1,5 @@
+licence
+
 # Weather-reactive-lamp
 ESP8266 based lamp whose color can be manually set, and automatically depending on the local weather.
 
@@ -13,4 +15,5 @@ These commands are sent to the Attiny85 chip to generate 3 PWM signals to contro
 
 ## Circuit and PCB
 ![alt text]( ./images/circuit.png )
+![alt text]( ./images/PCB2D.png )
 ![alt text]( ./images/PCB.jpg )
