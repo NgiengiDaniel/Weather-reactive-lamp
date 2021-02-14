@@ -3,7 +3,6 @@ import netP5.*;
 
 OscP5 oscP5;
 NetAddress remoteLocation;
-//float accelerometerX, accelerometerY, accelerometerZ;
 
 
 //////////////////////////
@@ -17,15 +16,12 @@ HScrollbar hs1, hs2, hs3;
 void setup() 
 {
       size( 480, 960 );
-      //fullScreen();
       orientation(PORTRAIT);
       oscP5 = new OscP5( this, 12000 );
       remoteLocation = new NetAddress( "192.168.0.55", 12000 );  
       textAlign( CENTER, CENTER );
       textSize( 24 );
       
-      //hs1 = new HScrollbar(20, 20, 40, 16, 16);
-      //fill(255, 0, 0);
       hs1 = new HScrollbar(0, 200, width, 80, 16, color(255,0,0,255));
       hs2 = new HScrollbar(0, 400, width, 80, 16, color(0,255,0,255));
       hs3 = new HScrollbar(0, 600, width, 80, 16, color(0,0,255,255));
@@ -38,7 +34,6 @@ void setup()
 
 void draw() 
 {
-      //background( 33, 47, 60  );
       background( 0, 0, 0 );
       text(""+(int)map(hs1.getPos(), 0, width, 0, 256), 70, 180);
       
