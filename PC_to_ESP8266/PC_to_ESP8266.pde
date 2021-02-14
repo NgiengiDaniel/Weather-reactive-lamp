@@ -3,7 +3,7 @@ import netP5.*;
 
 OscP5 oscP5;
 NetAddress remoteLocation;
-float accelerometerX, accelerometerY, accelerometerZ;
+//float accelerometerX, accelerometerY, accelerometerZ;
 
 
 //////////////////////////
@@ -20,32 +20,29 @@ void setup()
       //fullScreen();
       orientation(PORTRAIT);
       oscP5 = new OscP5( this, 12000 );
-      remoteLocation = new NetAddress( "192.168.0.55"/*"192.168.0.27"*//*"192.168.0.24"*/, 12000 );  
+      remoteLocation = new NetAddress( "192.168.0.55", 12000 );  
       textAlign( CENTER, CENTER );
       textSize( 24 );
       
       //hs1 = new HScrollbar(20, 20, 40, 16, 16);
-      fill(255, 0, 0);
-      hs1 = new HScrollbar(0, 200, width, 80, 16);
-      hs2 = new HScrollbar(0, 400, width, 80, 16);
-      hs3 = new HScrollbar(0, 600, width, 80, 16);
+      //fill(255, 0, 0);
+      hs1 = new HScrollbar(0, 200, width, 80, 16, color(255,0,0,255));
+      hs2 = new HScrollbar(0, 400, width, 80, 16, color(0,255,0,255));
+      hs3 = new HScrollbar(0, 600, width, 80, 16, color(0,0,255,255));
      //////////////////
      
      //////////////////
-     on_button = new Button("Click Me", width /2, height - height /3, 400, 120);
+     on_button = new Button("SEND", width /2, height - height /5, 400, 120);
      //////////////////
 }
 
 void draw() 
 {
-      background( 33, 47, 60  );
+      //background( 33, 47, 60  );
+      background( 0, 0, 0 );
       text(""+(int)map(hs1.getPos(), 0, width, 0, 256), 70, 180);
       
       //////////
-      if (on_button.MouseIsOver()) 
-      {
-        //on_button.fill(0,0,0);
-      }
       on_button.Draw();
       hs1.update();
       hs2.update();
@@ -54,23 +51,11 @@ void draw()
       hs2.display();
       hs3.display();
       
-      ////////
-      //System.out.println((int)red_s.getValue());
       r = (int)map(hs1.getPos(), 0, width, 0, 256);
       g = (int)map(hs2.getPos(), 0, width, 0, 256);
       b = (int)map(hs3.getPos(), 0, width, 0, 256);
-      //System.out.println( oscP5. );
 }
 
-//void oscEvent(OscMessage theOscMessage) 
-//{
-//      if ( theOscMessage.checkTypetag( "fff" ) )                  
-//      {
-//            accelerometerX =  theOscMessage.get( 0 ).floatValue();  
-//            accelerometerY =  theOscMessage.get( 1 ).floatValue();
-//            accelerometerZ =  theOscMessage.get( 2 ).floatValue();
-//      }
-//}
 
 
 void mousePressed()
@@ -136,8 +121,9 @@ class HScrollbar
   boolean over;           // is the mouse over the slider?
   boolean locked;
   float ratio;
+  color col_or;
 
-  HScrollbar (float xp, float yp, int sw, int sh, int l) 
+  HScrollbar (float xp, float yp, int sw, int sh, int l, color col_or) 
   {
     swidth = sw;
     sheight = sh;
@@ -150,6 +136,7 @@ class HScrollbar
     sposMin = xpos;
     sposMax = xpos + swidth - sheight;
     loose = l;
+    this.col_or = col_or;
   }
 
   void update() 
@@ -205,17 +192,17 @@ class HScrollbar
     rect(xpos, ypos, swidth, sheight);
     if (over || locked) 
     {
-      fill(0, 0, 0);
+      fill(this.col_or);
     } 
     else 
     {
-      fill(102, 102, 102);
+      fill(this.col_or, 255/4);
     }
     rect(spos, ypos, sheight, sheight);
   }
 
   float getPos() {
-    // Convert spos to be values between
+    // Converts position to be values between
     // 0 and the total width of the scrollbar
     return spos * ratio;
   }
