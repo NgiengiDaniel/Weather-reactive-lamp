@@ -11,4 +11,6 @@ These commands are sent to the Attiny85 chip to generate 3 PWM signals to contro
 4. Attiny85 receives the message and unpacks it using SlipMassageParser.
 5. PWM signals are generated.
 
-## Circuit
+## Circuit and PCB
+![alt text]( ./images/circuit.png )
+![alt text]( ./images/PCB.jpg )
